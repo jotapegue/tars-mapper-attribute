@@ -1,0 +1,37 @@
+{
+    "name": "jotape/tars",
+    "description": "translate attributes from classes php",
+    "type": "package",
+    "require-dev": {
+        "orchestra/testbench": "^6.19"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joao Pedro Garcia",
+            "email": "jotapegue09@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Jotape\\Tars\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jotapegue\\Tars\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jotapegue\\Scaffold\\ScaffoldServiceProvider"
+            ]
+        }
+    }
+}
