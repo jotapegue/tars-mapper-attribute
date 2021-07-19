@@ -2,6 +2,7 @@
     "name": "jotape/tars",
     "description": "translate attributes from classes php",
     "type": "package",
+    "version": "0.1-beta",
     "require-dev": {
         "orchestra/testbench": "^6.19"
     },
