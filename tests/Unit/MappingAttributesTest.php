@@ -110,10 +110,10 @@ class MappingAttributesTest extends TestCase
     }
 
     /** @test */
-    public function MappingAttributeClassAddingCasting()
+    public function MappingAttributeClassAddingCastingTestCaseDate()
     {
         $person = (object) [
-            'date' => '2020-31-12',
+            'date' => '2020-12-31',
         ];
 
         $mapping = new class($person) extends MappingAttributes {
@@ -122,12 +122,34 @@ class MappingAttributesTest extends TestCase
                 'data' => 'date',
             ];
 
-            public function getDataAttribute()
+            public function data()
             {
-                $this->data = date('d/m/Y', strtotime($this->date));
+                return date('d/m/Y', strtotime($this->data));
             }
         };
 
-        $this->assertEquals('31/12/2020', $mapping->data);
+        $this->assertEquals('31/12/2020', $mapping->data());
+    }
+
+    /** @test */
+    public function MappingAttributeClassAddingCastingTestCaseName()
+    {
+        $person = (object) [
+            'name' => 'joao pedro',
+        ];
+
+        $mapping = new class($person) extends MappingAttributes {
+            
+            protected $mapping = [
+                'nome' => 'name',
+            ];
+
+            public function nome()
+            {
+                return strtoupper($this->nome);
+            }
+        };
+
+        $this->assertEquals('JOAO PEDRO', $mapping->nome());
     }
 }
